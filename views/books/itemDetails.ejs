@@ -1,0 +1,40 @@
+<%- include('../header') -%>
+
+<h2><%= bookItem.book.author %> - <%= bookItem.book.title %></h2>
+<p><strong>Vonalkód:</strong> <%= bookItem.barcode %></p>
+<p><strong>Állapot:</strong> <%= bookItem.condition %></p>
+<p><strong>Státusz:</strong> <%= bookItem.state %></p>
+<br />
+<h4>Kölcsönzési lista</h4>
+
+<table class="table table-hover table-striped table-bordered">
+	<thead>
+		<tr>
+			<th>Kölcsönző</th>
+			<th>Kölcsönzés kezdete</th>
+			<th>Kölcsönzés vége</th>
+			<th>Visszahozva</th>
+			<th>Státusz</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% if(bookItem.rents.length) { %>
+			<% bookItem.rents.forEach(function (rent) { %>
+				<tr>
+					<td><%= rent.user.name %></td>
+					<td><%= rent.start %></td>
+					<td><%= rent.end %></td>
+					<td><%= rent.returnDate %></td>
+					<td><%= rent.status %></td>
+				</td>
+			<% }) %>
+		<% } else { %>
+			<tr>
+				<td colspan="4">A könyv még sosem volt kikölcsönözve.</td>
+			</td>
+		<% } %>
+	</tbody>
+</table>
+
+
+<%- include('../footer') -%>

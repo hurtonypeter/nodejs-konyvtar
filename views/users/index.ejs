@@ -1,0 +1,30 @@
+<%- include('../header') -%>
+
+<h1>Felhasználók</h1>
+
+<table class="table table-hover table-striped table-bordered">
+	<thead>
+		<tr>
+			<th>Könyvtári szám</th>
+			<th>Név</th>
+			<th>Műveletek</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% if(users.length) { %>
+			<% users.forEach(function (user) { %>
+				<tr>
+					<td><%= user.cardNumber %></td>
+					<td><%= user.name %></td>
+					<td><a href="/users/details/<%= user._id %>">részletek</a></td>
+				</tr>
+			<% }) %>
+		<% } else { %>
+			<tr>
+				<td colspan="3">Nincs egy tag sem a könyvtárban :(</td>
+			</tr>
+		<% } %>
+	</tbody>
+</table>
+
+<%- include('../footer') -%>

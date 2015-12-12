@@ -1,0 +1,29 @@
+<%- include('../header') -%>
+
+<h2>könyvpéldány szerkesztése</h2>
+
+<% if(bookItem.isNew) { %>
+<form method="POST" action="/books/items/add/<%= book.id %>" role="form" class="form-horizontal">
+<% } else { %>
+<form method="POST" action="/books/items/edit/<%= bookItem.id %>" role="form" class="form-horizontal">
+<% } %>
+	<div class="form-group">
+		<label for="barcode" class="col-sm-2 control-label">Vonalkód</label>
+		<div class="col-sm-3">
+			<input type="text" name="barcode" value="<%= bookItem.barcode %>" id="barcode" class="form-control" />
+		</div> 
+	</div>
+	<div class="form-group">
+		<label for="condition" class="col-sm-2 control-label">Vonalkód</label>
+		<div class="col-sm-3">
+			<select name="condition" id="condition" class="form-control">
+				<% conditionValues.forEach(function (item) { %>
+					<option <% if(item == bookItem.condition) { %><%= "selected" %><% } %> value="<%= item %>"><%= item %></option>
+				<% }) %>
+			</select>
+		</div> 
+	</div>
+	<button type="submit" class="btn btn-success">Mentés</button>
+</form>
+
+<%- include('../footer') -%>

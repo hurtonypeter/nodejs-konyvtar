@@ -1,0 +1,55 @@
+<%- include('../header') -%>
+
+<h1>Könyvek listázása</h1>
+
+<div class="panel panel-default">
+	<div class="panel-heading">Könyvek keresése</div>
+	<div class="panel-body">
+		<form class="form-inline">
+			<div class="form-group">
+				<input type="text" class="form-control" id="exampleInputName2" placeholder="Szerző...">
+			</div>
+			<div class="form-group">
+				<input type="email" class="form-control" id="exampleInputEmail2" placeholder="Cím...">
+			</div>
+			<div class="form-group">
+				<input type="email" class="form-control" id="exampleInputEmail2" placeholder="ISBN...">
+			</div>
+			<button type="submit" class="btn btn-default">Keresés</button>
+		</form>
+		
+		<p><br /><a href="/books/new">Új könyv létrehozása</a></p>
+	</div>
+
+	<table class="table table-hover table-striped table-bordered">
+		<thead>
+			<tr>
+				<th>Szerző</th>
+				<th>Cím</th>
+				<th>ISBN</th>
+				<th>Műveletek</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% if(books.length) { %>
+				<% books.forEach(function (book) { %>
+					<tr>
+						<td><%= book.author %></td>
+						<td><%= book.title %></td>
+						<td><%= book.isbn %></td>
+						<td>
+							<a href="/books/details/<%= book._id %>">részletek</a>
+						</td>
+					</td>
+				<% }) %>
+			<% } else { %>
+				<tr>
+					<td colspan="4">Nincs egy könyv sem a könyvtár adatbázisában.</td>
+				</td>
+			<% } %>
+		</tbody>
+	</table>
+
+</div>
+
+<%- include('../footer') -%>

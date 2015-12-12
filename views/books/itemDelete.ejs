@@ -1,0 +1,17 @@
+<%- include('../header') -%>
+
+<h2>Törlés</h2>
+
+<p>Biztosan törölni szeretné a könyvpéldányt?</p>
+
+<p><strong>Szerző:</strong> <%= bookItem.book.author %></p>
+<p><strong>Cím:</strong> <%= bookItem.book.title %></p>
+<p><strong>Vonalkód:</strong> <%= bookItem.barcode %></p>
+<p><strong>Állapot:</strong> <%= bookItem.condition %></p>
+
+<form action="/books/items/delete/<%= bookItem.id %>" method="POST">
+	<button type="submit" class="btn btn-danger">Törlés</button>
+	<a href="/books/details/<%= bookItem.book.id %>" class="btn btn-default">Mégsem</a>
+</form>
+
+<%- include('../footer') -%>

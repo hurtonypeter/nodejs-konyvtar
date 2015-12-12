@@ -1,0 +1,46 @@
+<%- include('../header') -%>
+
+<h1><%= book.author %></h1>
+<h2><%= book.title %></h2>
+
+<h3>Részletek</h3>
+
+<p><strong>ISBN: </strong> <%= book.isbn %></p>
+
+<p><a href="/books/edit/<%= book._id %>">Könyv szerkesztése</a></p>
+
+<h3>Példányok</h3>
+
+<a href="/books/items/add/<%= book._id %>">Új példány létrehozása</a>
+<table class="table table-hover table-striped table-bordered">
+	<thead>
+		<tr>
+			<th>Vonalkód</th>
+			<th>Állapot</th>
+			<th>Státusz</th>
+			<th>Műveletek</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% if(book.items.length) { %>
+			<% book.items.forEach(function (item) { %>
+				<tr>
+					<td><%= item.barcode %></td>
+					<td><%= item.condition %></td>
+					<td><%= item.state %></td>
+					<td>
+						<a href="/books/items/details/<%= item._id %>">részletek</a> | 
+						<a href="/books/items/edit/<%= item._id %>">szerkesztés</a> | 
+						<a href="/books/items/delete/<%= item._id %>">törlés</a>
+					</td>
+				</td>
+			<% }) %>
+		<% } else { %>
+			<tr>
+				<td colspan="4">Nincs egy példánya sem a könyvtárnak ebből a könyvből.</td>
+			</td>
+		<% } %>
+	</tbody>
+</table>
+
+<%- include('../footer') -%>

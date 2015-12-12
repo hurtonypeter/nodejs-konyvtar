@@ -1,0 +1,42 @@
+<%- include('../header') -%>
+
+<h1><%= user.name %></h1>
+
+<h2>Adatok</h2>
+
+<p><strong>Anyja neve: </strong> <%= user.mothersName %></p>
+<p><strong>Születési hely, idő: </strong> <%= user.birthPlace %>, <%= user.birthDate %></p>
+<p><strong>Könyvtári azonosító: </strong> <%= user.carNumber %></p>
+<p><strong>Cím: </strong> <%= user.address %></p>
+
+<h2>Kölcsönzések</h2>
+<table class="table table-hover table-striped table-bordered">
+	<thead>
+		<tr>
+			<th>Könyv</th>
+			<th>Kölcsönzés ideje</th>
+			<th>Kölcsönzés vége</th>
+			<th>Visszahozás ideje</th>
+			<th>Státusz</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% if(user.rents.length) { %>
+			<% user.rents.forEach(function (rent) { %>
+				<tr>
+					<td><%= rent.bookItem.book.author + " " + rent.bookItem.book.title %></td>
+					<td><%= rent.start %></td>
+					<td><%= rent.end %></td>
+					<td><%= rent.returnDate %></td>
+					<td><%= rent.status %></td>
+				</tr>
+			<% }) %>
+		<% } else { %>
+			<tr>
+				<td colspan="5">Nincs kölcsönzése a tagnak.</td>
+			</tr>
+		<% } %>
+	</tbody>
+</table>
+
+<%- include('../footer') -%>
