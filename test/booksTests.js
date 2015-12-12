@@ -67,11 +67,37 @@ describe('books middleware tests', function	() {
 	});
 	
 	//mw index függvényének tesztelése
-	describe('testing index function', function () {
+	//ez sajnos nem működik, mert a response.render, response.redirect
+	//	függvényeket nem sikerült mockolni. Amikor ezek vannak hívva,
+	//	nincs meghívva a next a mw-ben, ezért a mocha elszáll timeout-tal
+	/*describe('testing index function', function () {
 		
+		it('should render the book list', function (done) {
+			
+			var res = {
+				render: function (view, model) {
+					console.log(view);
+					console.log(model);
+					res.tpl = model;
+				}
+			};
+			var books = [{}, {}];
+			var fakeBookModel = {
+				list: function (cb) {
+					cb(undefined, books);
+				}
+			};
+			
+			booksMW.index({
+				Book: fakeBookModel
+			})({}, res, function (err) {
+				//expect(res.tpl.books).to.eql(books);
+				done();
+			});
+			
+		});
 		
-		
-	});
+	});*/
 	
 	
 });
