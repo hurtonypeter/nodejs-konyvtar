@@ -1,0 +1,15 @@
+{
+  "name": "nodejs-konyvtar",
+  "scripts": {
+  },
+  "env": {
+  },
+  "formation": {
+  },
+  "addons": [
+
+  ],
+  "buildpacks": [
+
+  ]
+}
